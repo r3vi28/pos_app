@@ -1,3 +1,51 @@
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
+  <ion-split-pane contentId="main-content" [when]="mostrarMenu ? 'md' : 'never'">
+
+    <ion-menu contentId="main-content" [disabled]="!mostrarMenu">
+      <ion-header>
+        <ion-toolbar color="primary">
+          <ion-title>{{ username }}</ion-title>
+        </ion-toolbar>
+      </ion-header>
+
+      <ion-content>
+        <ion-list>
+          <ion-menu-toggle auto-hide="false">
+            <ion-item button (click)="navegarA('/productos')">
+              <ion-label>Productos</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+
+          <ion-menu-toggle auto-hide="false">
+            <ion-item button (click)="navegarA('/clientes')">
+              <ion-label>Clientes</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+
+          <ion-menu-toggle auto-hide="false">
+            <ion-item button (click)="navegarA('/ventas')">
+              <ion-label>Ventas</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+
+          <ion-menu-toggle auto-hide="false" *ngIf="isAdmin()">
+            <ion-item button (click)="navegarA('/configuracion')">
+              <ion-label>Configuración</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+
+          <ion-menu-toggle auto-hide="false">
+            <ion-item button (click)="logout()">
+              <ion-label color="danger">Cerrar Sesión</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+        </ion-list>
+      </ion-content>
+    </ion-menu>
+
+    <div class="ion-page" id="main-content">
+      <ion-router-outlet></ion-router-outlet>
+    </div>
+
+  </ion-split-pane>
 </ion-app>
