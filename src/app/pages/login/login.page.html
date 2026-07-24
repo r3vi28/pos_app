@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Sistema POS</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Iniciar Sesión</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-item>
+        <ion-input
+          label="Usuario"
+          labelPlacement="floating"
+          type="text"
+          [(ngModel)]="username"
+          placeholder="Ingrese su usuario">
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-input
+          label="Contraseña"
+          labelPlacement="floating"
+          type="password"
+          [(ngModel)]="password"
+          placeholder="Ingrese su contraseña">
+        </ion-input>
+      </ion-item>
+
+      <ion-button
+        expand="block"
+        class="ion-margin-top"
+        (click)="login()">
+        Iniciar Sesión
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
