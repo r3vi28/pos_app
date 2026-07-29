@@ -50,4 +50,8 @@ export class AuthService {
   setRol(rol: string): void {
     sessionStorage.setItem('rol', rol);
   }
+
+  obtenerPerfil(): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/auth/perfil/`);
+  }
 }

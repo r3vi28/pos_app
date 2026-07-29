@@ -56,8 +56,16 @@ export class LoginPage {
     }
 
     this.authService.login(this.username, this.password).subscribe({
-      next: async () => {
-        await this.router.navigate(['/productos']);
+      next: () => {
+        this.authService.obtenerPerfil().subscribe({
+          next: async (res) => {
+            this.authService.setRol(res.datos.rol);
+            await this.router.navigate(['/productos']);
+          },
+          error: async () => {
+            await this.mostrarToast('Error al obtener el perfil.', 'danger');
+          }
+        });
       },
       error: async () => {
         await this.mostrarToast('Credenciales incorrectas.', 'danger');
